@@ -7,11 +7,11 @@ import (
 )
 
 func (e *Engine) Rendering() {
-	rl.ClearBackground(rl.Green)
+	rl.DrawTexture(rl.LoadTexture("/home/noah/Téléchargements/menu.jpg"), 0, 0, rl.White)
 }
 
 func (e *Engine) HomeRendering() {
-	rl.ClearBackground(rl.Green)
+	rl.DrawTexture(rl.LoadTexture("/home/noah/Téléchargements/menu.jpg"), 0, 0, rl.White)
 
 	rl.DrawText("Home Menu", int32(rl.GetScreenWidth())/2-rl.MeasureText("Home Menu", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.RayWhite)
 	rl.DrawText("[Enter] to Play", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.RayWhite)
