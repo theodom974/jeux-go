@@ -18,8 +18,8 @@ func (e *Engine) HomeLogic() {
 	//Menus
 	if rl.IsKeyPressed(rl.KeyEnter) {
 		e.StateMenu = PLAY
-		e.StateEngine = INGAME
 		rl.StopMusicStream(e.Music)
+		e.StateEngine = INGAME
 
 	}
 	if rl.IsKeyPressed(rl.KeyEscape) {
@@ -64,7 +64,7 @@ func (e *Engine) InGameLogic() {
 
 	//Musique
 	if !rl.IsMusicStreamPlaying(e.Music) {
-		e.Music = rl.LoadMusicStream("sounds/music/OSC-Ambient-Time-07-Simon_s-In-There-Somewhere.mp3")
+		e.Music = rl.LoadMusicStream("sounds/music/Vent2.mp3")
 		rl.PlayMusicStream(e.Music)
 	}
 	rl.UpdateMusicStream(e.Music)
