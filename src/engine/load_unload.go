@@ -6,7 +6,7 @@ import (
 
 func (e *Engine) Load() {
 	// Chargement des textures du personnage
-	e.Player.Sprite = rl.LoadTexture("textures/entities/Archer/Archer-Idle.png")
+	e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-walk.png")
 }
 
 func (e *Engine) Unload() {
