@@ -35,6 +35,8 @@ type Engine struct {
 
 	MapJSON MapJSON
 
+	LoadingScreen rl.Texture2D
+
 	IsRunning   bool
 	StateMenu   menu
 	StateEngine engine

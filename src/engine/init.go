@@ -19,6 +19,8 @@ func (e *Engine) Init() {
 	e.IsRunning = true
 	e.Sprites = make(map[string]rl.Texture2D)
 
+	e.LoadingScreen = rl.LoadTexture("textures/menu.jpg")
+
 	// Initialisation des composants du jeu
 	e.InitEntities()
 	e.InitCamera()

@@ -7,6 +7,7 @@ import (
 func (e *Engine) Load() {
 	// Chargement des textures du personnage
 	e.Player.Sprite = rl.LoadTexture("textures/entities/samourai1/Samurai2/Samourai-Idle.png")
+	
 }
 
 func (e *Engine) Unload() {
