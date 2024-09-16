@@ -1,74 +1,24 @@
-package changeperso
+package changeperso_test
 
-package main
+// Liste des images des personnages
+Characters := []*ebiten.Image{char1, char2}
 
-import (
-	"fmt"
-	"os"
-	"os/exec"
-	"time"
-	"golang.org/x/term"
-)
+// Index du personnage actuellement sélectionné
+CurrentIndex := 0
 
-// Personnage représente un personnage avec un nom pour simplifier l'affichage
-type Personnage struct {
-	Nom string
+if ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
+    CurrentIndex = (CurrentIndex + 1) % len(Characters)
+}
+if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
+    CurrentIndex = (CurrentIndex - 1 + len(Characters)) % len(Characters)
 }
 
-// Game gère le jeu et les personnages
-type Game struct {
-	Personnages   []Personnage
-	IndexActuel   int
-}
-
-func NewGame() *Game {
-	return &Game{
-		Personnages: []Personnage{
-			{Nom: "Personnage 1"},
-			{Nom: "Personnage 2"},
-			{Nom: "Personnage 3"},
-		},
-		IndexActuel: 0,
-	}
-}
-
-func (g *Game) ChangerPersonnage(direction string) {
-	if direction == "droite" {
-		g.IndexActuel = (g.IndexActuel + 1) % len(g.Personnages)
-	} else if direction == "gauche" {
-		g.IndexActuel = (g.IndexActuel - 1 + len(g.Personnages)) % len(g.Personnages)
-	}
-}
-
-func (g *Game) AfficherPersonnage() {
-	fmt.Printf("Personnage actuel : %s\n", g.Personnages[g.IndexActuel].Nom)
-}
-
-func main() {
-	game := NewGame()
-	
-	// Désactiver le buffering de sortie pour que l'affichage soit immédiat
-	fmt.Printf("\033[2J") // Efface l'écran
-	fmt.Printf("\033[H")  // Déplace le curseur en haut à gauche
-	
-	// Détection des touches
-	for {
-		game.AfficherPersonnage()
-		
-		// Lire l'entrée de l'utilisateur
-		fmt.Print("Utilisez 'gauche' ou 'droite' pour changer de personnage (ou 'exit' pour quitter) : ")
-		var direction string
-		fmt.Scanln(&direction)
-		
-		if direction == "exit" {
-			break
-		}
-		
-		game.ChangerPersonnage(direction)
-		
-		// Pause pour ne pas saturer la console
-		time.Sleep(500 * time.Millisecond)
-		// Effacer l'écran avant de réafficher le personnage
-		fmt.Printf("\033[2J")
-	}
+func (g *Game) Draw(screen *ebiten.Image) {
+    screen.Fill(color.RGBA{0, 0, 0, 255}) // Efface l'écran avec une couleur noire
+    
+    // Dessiner le personnage actuellement sélectionné
+    currentCharacter := Characters[CurrentIndex]
+    op := &ebiten.DrawImageOptions{}
+    op.GeoM.Translate(100, 100) // Positionner le personnage
+    screen.DrawImage(currentCharacter, op)
 }
