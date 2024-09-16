@@ -7,11 +7,11 @@ import (
 )
 
 func (e *Engine) Rendering() {
-	rl.DrawTexture(e.LoadingScreen, 0, 0, rl.White)
+	rl.DrawTexture(rl.LoadTexture("textures/menu.jpg"), 0, 0, rl.White)
 }
 
 func (e *Engine) HomeRendering() {
-	rl.DrawTexture(e.LoadingScreen, 0, 0, rl.White)
+	rl.DrawTexture(rl.LoadTexture("textures/menu.jpg"), 0, 0, rl.White)
 
 	rl.DrawText("Home Menu", int32(rl.GetScreenWidth())/2-rl.MeasureText("Home Menu", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
 	rl.DrawText("[Enter] to Play", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.Red)
@@ -32,17 +32,17 @@ func (e *Engine) InGameRendering() {
 	rl.EndMode2D() // On finit le rendu camera
 
 	// Ecriture fixe (car pas affectée par le mode camera)
-	rl.DrawText("Playing", int32(rl.GetScreenWidth())/2-rl.MeasureText("Playing", 40)/2, int32(rl.GetScreenHeight())/2-350, 40, rl.Red)
-	rl.DrawText("[P] or [Esc] to Pause", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to Pause", 20)/2, int32(rl.GetScreenHeight())/2-300, 20, rl.Red)
+	rl.DrawText("Playing", int32(rl.GetScreenWidth())/2-rl.MeasureText("Playing", 40)/2, int32(rl.GetScreenHeight())/2-350, 40, rl.RayWhite)
+	rl.DrawText("[P] or [Esc] to Pause", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to Pause", 20)/2, int32(rl.GetScreenHeight())/2-300, 20, rl.RayWhite)
 
 }
 
 func (e *Engine) PauseRendering() {
-	rl.ClearBackground(rl.Purple)
+	rl.DrawTexture(rl.LoadTexture("textures/image_pause.jpg"), 0, 0, rl.White)
 
 	rl.DrawText("Paused", int32(rl.GetScreenWidth())/2-rl.MeasureText("Paused", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
-	rl.DrawText("[P] or [Esc] to resume", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to resume", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.Red)
-	rl.DrawText("[Q] to Quit", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2+100, 20, rl.Red)
+	rl.DrawText("[P] or [Esc] to resume", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to resume", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.RayWhite)
+	rl.DrawText("[Q] to Quit", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2+100, 20, rl.RayWhite)
 
 	rl.EndDrawing()
 }
@@ -51,7 +51,7 @@ func (e *Engine) RenderPlayer() {
 
 	rl.DrawTexturePro(
 		e.Player.Sprite,
-		rl.NewRectangle(-50, 0, 100, 100),
+		rl.NewRectangle(-20, -5, 100, 100),
 		rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 150, 150),
 		rl.Vector2{X: 0, Y: 0},
 		0,
