@@ -3,70 +3,72 @@ package changeperso
 package main
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"image"
-	"image/color"
-	_ "image/png"
+	"fmt"
+	"os"
+	"os/exec"
+	"time"
+	"golang.org/x/term"
 )
 
+// Personnage représente un personnage avec un nom pour simplifier l'affichage
+type Personnage struct {
+	Nom string
+}
+
+// Game gère le jeu et les personnages
 type Game struct {
-	Characters   []*ebiten.Image // Liste des images des personnages
-	CurrentIndex int              // Index du personnage actuellement sélectionné
+	Personnages   []Personnage
+	IndexActuel   int
 }
 
-func NewGame() (*Game, error) {
-	// Charger les images des personnages
-	char1, _, err := ebitenutil.NewImageFromFile("char1.png", ebiten.FilterDefault)
-	if err != nil {
-		return nil, err
-	}
-	char2, _, err := ebitenutil.NewImageFromFile("char2.png", ebiten.FilterDefault)
-	if err != nil {
-		return nil, err
-	}
-	
-	// Créer le jeu avec les personnages chargés
+func NewGame() *Game {
 	return &Game{
-		Characters:   []*ebiten.Image{char1, char2},
-		CurrentIndex: 0,
-	}, nil
-}
-
-func (g *Game) Update() error {
-	// Changer de personnage avec les touches gauche/droite
-	if ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
-		g.CurrentIndex = (g.CurrentIndex + 1) % len(g.Characters)
+		Personnages: []Personnage{
+			{Nom: "Personnage 1"},
+			{Nom: "Personnage 2"},
+			{Nom: "Personnage 3"},
+		},
+		IndexActuel: 0,
 	}
-	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
-		g.CurrentIndex = (g.CurrentIndex - 1 + len(g.Characters)) % len(g.Characters)
+}
+
+func (g *Game) ChangerPersonnage(direction string) {
+	if direction == "droite" {
+		g.IndexActuel = (g.IndexActuel + 1) % len(g.Personnages)
+	} else if direction == "gauche" {
+		g.IndexActuel = (g.IndexActuel - 1 + len(g.Personnages)) % len(g.Personnages)
 	}
-	return nil
 }
 
-func (g *Game) Draw(screen *ebiten.Image) {
-	screen.Fill(color.RGBA{0, 0, 0, 255}) // Efface l'écran avec du noir
-	
-	// Dessiner le personnage actuellement sélectionné
-	currentCharacter := g.Characters[g.CurrentIndex]
-	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Translate(320-currentCharacter.Bounds().Dx()/2, 240-currentCharacter.Bounds().Dy()/2) // Centrer le personnage
-	screen.DrawImage(currentCharacter, op)
-}
-
-func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	return 640, 480
+func (g *Game) AfficherPersonnage() {
+	fmt.Printf("Personnage actuel : %s\n", g.Personnages[g.IndexActuel].Nom)
 }
 
 func main() {
-	game, err := NewGame()
-	if err != nil {
-		panic(err)
-	}
-
-	ebiten.SetWindowSize(640, 480)
-	ebiten.SetWindowTitle("Character Selection Menu")
-	if err := ebiten.RunGame(game); err != nil {
-		panic(err)
+	game := NewGame()
+	
+	// Désactiver le buffering de sortie pour que l'affichage soit immédiat
+	fmt.Printf("\033[2J") // Efface l'écran
+	fmt.Printf("\033[H")  // Déplace le curseur en haut à gauche
+	
+	// Détection des touches
+	for {
+		game.AfficherPersonnage()
+		
+		// Lire l'entrée de l'utilisateur
+		fmt.Print("Utilisez 'gauche' ou 'droite' pour changer de personnage (ou 'exit' pour quitter) : ")
+		var direction string
+		fmt.Scanln(&direction)
+		
+		if direction == "exit" {
+			break
+		}
+		
+		game.ChangerPersonnage(direction)
+		
+		// Pause pour ne pas saturer la console
+		time.Sleep(500 * time.Millisecond)
+		// Effacer l'écran avant de réafficher le personnage
+		fmt.Printf("\033[2J")
 	}
 }
