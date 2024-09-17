@@ -18,6 +18,7 @@ type engine int
 
 const (
 	INGAME  engine = iota
+	INFIGHT engine = iota
 	PAUSE    engine = iota
 	GAMEOVER engine = iota
 )

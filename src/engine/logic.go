@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"fmt"
 	"main/src/entity"
 	"main/src/fight"
 
@@ -99,7 +100,7 @@ func (e *Engine) MonsterCollisions() {
 				}
 			}
 		} else {
-			//...
+
 		}
 	}
 }

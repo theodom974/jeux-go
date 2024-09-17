@@ -33,7 +33,7 @@ func (e *Engine) Init() {
 func (e *Engine) InitEntities() {
 
 	e.Player = entity.Player{
-		Position:  rl.Vector2{X: 300, Y: 300},
+		Position:  rl.Vector2{X: 100, Y: 200},
 		Health:    100,
 		Money:     1000,
 		Speed:     2,
