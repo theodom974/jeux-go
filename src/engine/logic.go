@@ -2,15 +2,24 @@ package engine
 
 import (
 	"main/src/entity"
+	"main/src/fight"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 func (e *Engine) HomeLogic() {
+	e.LoadingScreenCountFrame++
+	if e.LoadingScreenCountFrame%4 == 1 {
+		if e.LoadingScreenSourceX == 15200 {
+			e.LoadingScreenSourceX = 0
+		} else {
+			e.LoadingScreenSourceX += 800
+		}
+	}
 
 	//Musique
 	if !rl.IsMusicStreamPlaying(e.Music) {
-		e.Music = rl.LoadMusicStream("sounds/music/Decision.mp3")
+		e.Music = rl.LoadMusicStream("sounds/music/bleachost.mp3")
 		rl.PlayMusicStream(e.Music)
 	}
 	rl.UpdateMusicStream(e.Music)
@@ -86,7 +95,7 @@ func (e *Engine) MonsterCollisions() {
 			if monster.Name == "claude" {
 				e.NormalTalk(monster, "Bonjour")
 				if rl.IsKeyPressed(rl.KeyE) {
-					//lancer un combat ?
+					fight.Fight(e.Player, monster)
 				}
 			}
 		} else {

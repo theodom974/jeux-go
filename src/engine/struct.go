@@ -23,6 +23,8 @@ const (
 )
 
 type Engine struct {
+
+
 	Player   entity.Player
 	Monsters []entity.Monster
 
@@ -35,7 +37,10 @@ type Engine struct {
 
 	MapJSON MapJSON
 
+	LoadingScreenCountFrame int
 	LoadingScreen rl.Texture2D
+	LoadingScreenSourceX int
+	LoadingScreenSourceY int
 
 	IsRunning   bool
 	StateMenu   menu

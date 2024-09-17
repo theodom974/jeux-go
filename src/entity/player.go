@@ -8,12 +8,12 @@ import (
 )
 
 type Player struct {
-
 	Position  rl.Vector2
 	Health    int
 	Money     int
 	Speed     float32
 	Inventory []item.Item
+	Energy    int
 
 	IsAlive bool
 

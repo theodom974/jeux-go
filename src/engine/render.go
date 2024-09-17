@@ -1,22 +1,24 @@
 package engine
 
 import (
+	"fmt"
 	"main/src/entity"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 func (e *Engine) Rendering() {
-	rl.DrawTexture(rl.LoadTexture("textures/menu.jpg"), 0, 0, rl.White)
+	rl.DrawTexture(rl.LoadTexture("textures/menup.png"), 0, 0, rl.White)
 }
 
 func (e *Engine) HomeRendering() {
-	rl.DrawTexture(rl.LoadTexture("textures/menu.jpg"), 0, 0, rl.White)
+	//rl.DrawTexture(e.LoadingScreen, 0, 0, rl.White)
+	rl.DrawTexturePro(e.LoadingScreen, rl.NewRectangle(float32(e.LoadingScreenSourceX), float32(e.LoadingScreenSourceY), 800, 450), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0,0), 0, rl.White)
 
-	rl.DrawText("Home Menu", int32(rl.GetScreenWidth())/2-rl.MeasureText("Home Menu", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
-	rl.DrawText("[Enter] to Play", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.Red)
-	rl.DrawText("[Esc] to Quit", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2+100, 20, rl.Red)
-
+	rl.DrawText("Kenshin Sakura", int32(rl.GetScreenWidth())/5-rl.MeasureText("Kenshin Sakura", 80)/2, int32(rl.GetScreenHeight())/4-150, 80, rl.White)
+	rl.DrawText("[Enter] Pour Jouer", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/4+100, 50, rl.White)
+	rl.DrawText("[Esc] Pour Quitter", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2, 50, rl.White)
+	
 }
 
 func (e *Engine) InGameRendering() {
@@ -34,6 +36,8 @@ func (e *Engine) InGameRendering() {
 	// Ecriture fixe (car pas affectée par le mode camera)
 	rl.DrawText("Playing", int32(rl.GetScreenWidth())/2-rl.MeasureText("Playing", 40)/2, int32(rl.GetScreenHeight())/2-350, 40, rl.RayWhite)
 	rl.DrawText("[P] or [Esc] to Pause", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to Pause", 20)/2, int32(rl.GetScreenHeight())/2-300, 20, rl.RayWhite)
+	rl.DrawText(fmt.Sprintf("Health : %d ", e.Player.Health), int32(rl.GetScreenWidth())/26-rl.MeasureText("Health", 10)/2,int32(rl.GetScreenHeight())/20, 25, rl.Green)
+	rl.DrawText(fmt.Sprintf("Energy : %d ", e.Player.Energy), int32(rl.GetScreenWidth())/26-rl.MeasureText("Health", 10)/2,int32(rl.GetScreenHeight())/12, 25, rl.Yellow)
 
 }
 

@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	ScreenWidth  = 1400
-	ScreenHeight = 800
+	ScreenWidth  = 1920
+	ScreenHeight = 1080
 )
 
 func (e *Engine) Init() {
@@ -19,13 +19,14 @@ func (e *Engine) Init() {
 	e.IsRunning = true
 	e.Sprites = make(map[string]rl.Texture2D)
 
-	e.LoadingScreen = rl.LoadTexture("textures/menu.jpg")
-
 	// Initialisation des composants du jeu
 	e.InitEntities()
 	e.InitCamera()
 	e.InitMusic()
 	e.InitMap("textures/map/tilesets/map.json")
+
+	e.LoadingScreenSourceX = 0
+	e.LoadingScreenSourceY = 0
 
 }
 
@@ -36,6 +37,7 @@ func (e *Engine) InitEntities() {
 		Health:    100,
 		Money:     1000,
 		Speed:     2,
+		Energy:    50,
 		Inventory: []item.Item{},
 
 		IsAlive: true,
@@ -74,3 +76,4 @@ func (e *Engine) InitMusic() {
 
 	rl.PlayMusicStream(e.Music)
 }
+
