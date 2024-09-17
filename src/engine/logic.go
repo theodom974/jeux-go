@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"fmt"
 	"main/src/entity"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
@@ -87,10 +88,12 @@ func (e *Engine) MonsterCollisions() {
 				e.NormalTalk(monster, "Bonjour")
 				if rl.IsKeyPressed(rl.KeyE) {
 					//lancer un combat ?
+					fmt.Println("Presser E pour attaquer")
+					//fight.Fight(e.player, monster)
 				}
 			}
 		} else {
-			//...
+
 		}
 	}
 }
