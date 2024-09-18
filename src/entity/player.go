@@ -3,6 +3,7 @@ package entity
 import (
 	"fmt"
 	"main/src/item"
+	"time"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
@@ -14,6 +15,9 @@ type Player struct {
 	Money     int
 	Speed     float32
 	Inventory []item.Item
+	NormalSpeed float32  
+    Dashing     bool      
+    LastDash    time.Time 
 
 	IsAlive bool
 
@@ -21,7 +25,7 @@ type Player struct {
 }
 
 func (p *Player) Attack(m *Monster) {
-	m.Health -= 1
+	m.Health -= 2
 }
 
 func (p *Player) ToString() {

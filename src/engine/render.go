@@ -2,6 +2,7 @@ package engine
 
 import (
 	"main/src/entity"
+	"strconv"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
@@ -28,6 +29,7 @@ func (e *Engine) InGameRendering() {
 
 	e.RenderMonsters()
 	e.RenderPlayer()
+	e.RenderPnjs()
 
 	rl.EndMode2D() // On finit le rendu camera
 
@@ -38,7 +40,7 @@ func (e *Engine) InGameRendering() {
 }
 
 func (e *Engine) PauseRendering() {
-	rl.DrawTexture(rl.LoadTexture("textures/image_pause.jpg"), 0, 0, rl.White)
+	rl.DrawTexture(e.Background , 0, 0, rl.White)
 
 	rl.DrawText("Paused", int32(rl.GetScreenWidth())/2-rl.MeasureText("Paused", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
 	rl.DrawText("[P] or [Esc] to resume", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to resume", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.RayWhite)
@@ -51,7 +53,7 @@ func (e *Engine) RenderPlayer() {
 
 	rl.DrawTexturePro(
 		e.Player.Sprite,
-		rl.NewRectangle(-20, -5, 100, 100),
+		rl.NewRectangle(80, 95, 100, 100),
 		rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 150, 150),
 		rl.Vector2{X: 0, Y: 0},
 		0,
@@ -62,10 +64,27 @@ func (e *Engine) RenderPlayer() {
 
 func (e *Engine) RenderMonsters() {
 	for _, monster := range e.Monsters {
+	  if monster.IsAlive {
+			rl.DrawTexturePro(
+				monster.Sprite,
+				rl.NewRectangle(0, 0, 100, 100),
+				rl.NewRectangle(monster.Position.X, monster.Position.Y, 150, 150),
+				rl.Vector2{X: 0, Y: 0},
+				0,
+				rl.White,
+			)
+			rl.DrawText(strconv.Itoa(monster.Health) + "/50", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White )
+		}
+		
+	}
+}
+
+func (e *Engine) RenderPnjs() {
+	for _, pnjs := range e.Pnjs {
 		rl.DrawTexturePro(
-			monster.Sprite,
+			pnjs.Sprite,
 			rl.NewRectangle(0, 0, 100, 100),
-			rl.NewRectangle(monster.Position.X, monster.Position.Y, 150, 150),
+			rl.NewRectangle(pnjs.Position.X, pnjs.Position.Y, 150, 150),
 			rl.Vector2{X: 0, Y: 0},
 			0,
 			rl.White,
@@ -85,4 +104,17 @@ func (e *Engine) RenderDialog(m entity.Monster, sentence string) {
 	)
 
 	rl.EndMode2D()
+}
+
+func (e *Engine) RendrDialog(p entity.Pnjs, sentence string) {
+	rl.BeginMode2D(e.Camera)
+
+	rl.DrawText(
+		sentence,
+		int32(p.Position.X),
+		int32(p.Position.Y)+50,
+		10,
+		rl.RayWhite,
+	)
+rl.EndMode2D()	
 }

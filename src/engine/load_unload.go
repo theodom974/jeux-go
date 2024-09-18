@@ -6,7 +6,8 @@ import (
 
 func (e *Engine) Load() {
 	// Chargement des textures du personnage
-	e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-walk.png")
+	e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-Attack01.png")
+	e.Background = rl.LoadTexture("textures/image_pause.png")
 }
 
 func (e *Engine) Unload() {
@@ -19,5 +20,9 @@ func (e *Engine) Unload() {
 
 	for _, monster := range e.Monsters {
 		rl.UnloadTexture(monster.Sprite)
+	}
+
+	for _, pnjs := range e.Pnjs {
+		rl.UnloadTexture(pnjs.Sprite)
 	}
 }

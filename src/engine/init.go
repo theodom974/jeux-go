@@ -32,7 +32,7 @@ func (e *Engine) Init() {
 func (e *Engine) InitEntities() {
 
 	e.Player = entity.Player{
-		Position:  rl.Vector2{X: 300, Y: 300},
+		Position:  rl.Vector2{X: 100, Y: 200},
 		Health:    100,
 		Money:     1000,
 		Speed:     2,
@@ -43,19 +43,60 @@ func (e *Engine) InitEntities() {
 		Sprite: e.Player.Sprite,
 	}
 
-	e.Monsters = append(e.Monsters, entity.Monster{
-		Name:     "claude",
-		Position: rl.Vector2{X: 400, Y: 320},
-		Health:   20,
-		Damage:   5,
-		Loot:     []item.Item{},
-		Worth:    12,
+		e.Monsters = append(e.Monsters, entity.Monster{
+			Name:     "claude",
+			Position: rl.Vector2{X: 400, Y: 320},
+			Health:   50,
+			Damage:   3,
+			Loot:     []item.Item{},
+			Worth:    12,
 
-		IsAlive: true,
-		Sprite:  rl.LoadTexture("textures/entities/orc/Orc-Idle.png"),
-	})
+			IsAlive: true,
+			Sprite:  rl.LoadTexture("textures/entities/orc/Orc-Idle.png"),
+		})
 
 	e.Player.Money = 12
+
+	e.Pnjs = append(e.Pnjs, entity.Pnjs{
+		Name:     "Garde 1",
+		Position: rl.Vector2{X: 975, Y: 748},
+		Health:   100,
+
+		IsAlive: true,
+		Sprite:  rl.LoadTexture("textures/entities/Garde/Garde-H.png"),
+	})
+	e.Pnjs = append(e.Pnjs, entity.Pnjs{
+		Name:     "Garde 2",
+		Position: rl.Vector2{X: 975, Y: 675},
+		Health:   100,
+
+		IsAlive: true,
+		Sprite:  rl.LoadTexture("textures/entities/Garde/Garde-H.png"),
+	})
+	e.Pnjs = append(e.Pnjs, entity.Pnjs{
+		Name:     "Femme",
+		Position: rl.Vector2{X: 140, Y: 1100},
+		Health:   100,
+
+		IsAlive: true,
+		Sprite:  rl.LoadTexture("textures/entities/Garde/Gade-F.png"),
+	})
+	e.Pnjs = append(e.Pnjs, entity.Pnjs{
+		Name:     "Villageois",
+		Position: rl.Vector2{X: 140, Y: 195},
+		Health:   100,
+
+		IsAlive: true,
+		Sprite:  rl.LoadTexture("textures/entities/Villageois/villageois.png"),
+	})
+	e.Pnjs = append(e.Pnjs, entity.Pnjs{
+		Name:     "SDF",
+		Position: rl.Vector2{X: 1250, Y: 45},
+		Health:   100,
+
+		IsAlive: true,
+		Sprite:  rl.LoadTexture("textures/entities/Villageois/Villageois-S.png"),
+	})
 }
 
 func (e *Engine) InitCamera() {

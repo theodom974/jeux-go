@@ -25,6 +25,7 @@ const (
 type Engine struct {
 	Player   entity.Player
 	Monsters []entity.Monster
+	Pnjs []entity.Pnjs
 
 	Music       rl.Music
 	MusicVolume float32
@@ -34,6 +35,7 @@ type Engine struct {
 	Camera rl.Camera2D
 
 	MapJSON MapJSON
+	Background rl.Texture2D
 
 	LoadingScreen rl.Texture2D
 
