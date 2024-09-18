@@ -258,7 +258,7 @@
         {
          "columns":8,
          "firstgid":4043,
-         "image":"..\/..\/..\/..\/arcadia\/textures\/map\/tilesets\/TX Tileset Grass.png",
+         "image":"TX Tileset Grass.png",
          "imageheight":256,
          "imagewidth":256,
          "margin":0,
@@ -271,7 +271,7 @@
         {
          "columns":16,
          "firstgid":4107,
-         "image":"..\/..\/..\/..\/arcadia\/textures\/map\/tilesets\/TX Plant.png",
+         "image":"TX Plant.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -284,7 +284,7 @@
         {
          "columns":56,
          "firstgid":4363,
-         "image":"..\/..\/..\/..\/projet\/TX eau.png",
+         "image":"TX eau.png",
          "imageheight":1200,
          "imagewidth":1800,
          "margin":0,
@@ -297,7 +297,7 @@
         {
          "columns":22,
          "firstgid":6435,
-         "image":"..\/..\/..\/..\/projet\/TX_temple1.png",
+         "image":"TX_temple1.png",
          "imageheight":800,
          "imagewidth":720,
          "margin":0,
