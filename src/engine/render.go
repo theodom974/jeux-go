@@ -9,7 +9,7 @@ import (
 )
 
 func (e *Engine) Rendering() {
-	rl.DrawTexture(e.BackgroundHome, 0, 0, rl.White)
+	
 }
 
 func (e *Engine) charactersRendering() {
