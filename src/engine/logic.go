@@ -95,6 +95,8 @@ func (e *Engine) MonsterCollisions() {
 			if monster.Name == "claude" {
 				e.NormalTalk(monster, "Bonjour")
 				if rl.IsKeyPressed(rl.KeyE) {
+					
+					e.StateEngine = INFIGHT
 					fight.Fight(e.Player, monster)
 				}
 			}
