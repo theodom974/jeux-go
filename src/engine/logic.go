@@ -1,16 +1,28 @@
 package engine
 
 import (
+	"fmt"
 	"main/src/entity"
+	"main/src/fight"
+	"time"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 func (e *Engine) HomeLogic() {
+	e.LoadingScreenCountFrame++
+	fmt.Println(e.LoadingScreenCountFrame)
+	if e.LoadingScreenCountFrame%4 == 1 {
+		if e.LoadingScreenSourceX == 15200 {
+			e.LoadingScreenSourceX = 0
+		} else {
+			e.LoadingScreenSourceX += 800
+		}
+	}
 
 	//Musique
 	if !rl.IsMusicStreamPlaying(e.Music) {
-		e.Music = rl.LoadMusicStream("sounds/music/Decision.mp3")
+		e.Music = rl.LoadMusicStream("sounds/music/bleachost.mp3")
 		rl.PlayMusicStream(e.Music)
 	}
 	rl.UpdateMusicStream(e.Music)
@@ -37,6 +49,25 @@ func (e *Engine) SettingsLogic() {
 }
 
 func (e *Engine) InGameLogic() {
+	//dash
+	dashSpeed := e.Player.Speed * 1.5
+	dashDuration := 100 * time.Millisecond
+	dashCooldown := 5 * time.Second
+	now := time.Now()
+
+	if (rl.IsKeyPressed(rl.KeySpace) || rl.IsKeyPressed(rl.KeySpace)) && now.Sub(e.Player.LastDash) > dashCooldown {
+		e.Player.Dashing = true
+		e.Player.LastDash = now
+	}
+
+	if e.Player.Dashing {
+		e.Player.Speed = dashSpeed
+
+		if now.Sub(e.Player.LastDash) > dashDuration {
+			e.Player.Dashing = false
+			e.Player.Speed = 2
+		}
+	}
 	// Mouvement
 	if rl.IsKeyDown(rl.KeyW) || rl.IsKeyDown(rl.KeyUp) {
 		e.Player.Position.Y -= e.Player.Speed
@@ -61,6 +92,7 @@ func (e *Engine) InGameLogic() {
 	}
 
 	e.CheckCollisions()
+	e.CheckColliions()
 
 	//Musique
 	if !rl.IsMusicStreamPlaying(e.Music) {
@@ -75,9 +107,13 @@ func (e *Engine) CheckCollisions() {
 	e.MonsterCollisions()
 }
 
+func (e *Engine) CheckColliions() {
+	e.PnjsColliions()
+}
+
 func (e *Engine) MonsterCollisions() {
 
-	for _, monster := range e.Monsters {
+	for i, monster := range e.Monsters {
 		if monster.Position.X > e.Player.Position.X-20 &&
 			monster.Position.X < e.Player.Position.X+20 &&
 			monster.Position.Y > e.Player.Position.Y-20 &&
@@ -86,7 +122,7 @@ func (e *Engine) MonsterCollisions() {
 			if monster.Name == "claude" {
 				e.NormalTalk(monster, "Bonjour")
 				if rl.IsKeyPressed(rl.KeyE) {
-					//lancer un combat ?
+					fight.Fight(&e.Player, &e.Monsters[i])
 				}
 			}
 		} else {
@@ -95,8 +131,30 @@ func (e *Engine) MonsterCollisions() {
 	}
 }
 
+func (e *Engine) PnjsColliions() {
+
+	for _, pnj := range e.Pnjs {
+		if pnj.Position.X > e.Player.Position.X-20 &&
+			pnj.Position.X < e.Player.Position.X+20 &&
+			pnj.Position.Y > e.Player.Position.Y-20 &&
+			pnj.Position.Y < e.Player.Position.Y+20 {
+
+			if pnj.Name == "Garde 1" {
+				e.NoralTalkp(pnj, "Salut cher voyageur")
+			} else if pnj.Name == "Garde 2" {
+				e.NoralTalkp(pnj, "jte baise")
+			} else {
+				//quand tu parle a aucun pnj
+			}
+		}
+	}
+}
+
 func (e *Engine) NormalTalk(m entity.Monster, sentence string) {
 	e.RenderDialog(m, sentence)
+}
+func (e *Engine) NoralTalkp(p entity.Pnjs, sentence string) {
+	e.RendrDialog(p, sentence)
 }
 
 func (e *Engine) PauseLogic() {
