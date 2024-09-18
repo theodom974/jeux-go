@@ -180,7 +180,7 @@
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/projet\/TX arbre.png",
+         "image":"TX arbre.png",
          "imageheight":150,
          "imagewidth":150,
          "margin":0,
@@ -193,7 +193,7 @@
         {
          "columns":22,
          "firstgid":17,
-         "image":"..\/..\/..\/..\/projet\/TX lac.png",
+         "image":"TX lac.png",
          "imageheight":1600,
          "imagewidth":720,
          "margin":0,
@@ -206,7 +206,7 @@
         {
          "columns":12,
          "firstgid":1117,
-         "image":"..\/..\/..\/..\/projet\/TX maison.png",
+         "image":"TX maison.png",
          "imageheight":128,
          "imagewidth":390,
          "margin":0,
@@ -219,7 +219,7 @@
         {
          "columns":56,
          "firstgid":1165,
-         "image":"..\/..\/..\/..\/projet\/TX ponts.png",
+         "image":"TX ponts.png",
          "imageheight":1200,
          "imagewidth":1800,
          "margin":0,
@@ -232,7 +232,7 @@
         {
          "columns":16,
          "firstgid":3237,
-         "image":"..\/..\/..\/..\/projet\/TX spawn.png",
+         "image":"TX spawn.png",
          "imageheight":520,
          "imagewidth":512,
          "margin":0,
@@ -245,7 +245,7 @@
         {
          "columns":22,
          "firstgid":3493,
-         "image":"..\/..\/..\/..\/projet\/TX temple.png",
+         "image":"TX temple.png",
          "imageheight":800,
          "imagewidth":720,
          "margin":0,
