@@ -1,6 +1,8 @@
 package engine
 
 import (
+	"main/src/entity"
+
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -19,5 +21,19 @@ func (e *Engine) Unload() {
 
 	for _, monster := range e.Monsters {
 		rl.UnloadTexture(monster.Sprite)
+	}
+}
+func (e *Engine) UnloadCharacters() {
+	rl.UnloadTexture(e.Player.Sprite)
+}
+
+func (e *Engine) loadCharacters() {
+	if e.Player.Class == entity.NINJA {
+		e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-idle.png")
+		e.Background = rl.LoadTexture("textures/entities/ninja/ninja.jpg")
+	}
+	if e.Player.Class == entity.SAMOURAI {
+		e.Player.Sprite = rl.LoadTexture("textures/entities/Samourai/Samourai-Idle.png")
+		e.Background = rl.LoadTexture("textures/entities/Samourai/Samourai.jpg")
 	}
 }

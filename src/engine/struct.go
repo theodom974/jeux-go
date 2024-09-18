@@ -12,9 +12,11 @@ const (
 	HOME     menu = iota
 	SETTINGS menu = iota
 	PLAY     menu = iota
+	CHARACTERS menu = iota
+	Parame
 )
 
-type engine int
+type engine int 
 
 const (
 	INGAME  engine = iota
@@ -24,7 +26,7 @@ const (
 
 type Engine struct {
 	Player   entity.Player
-	Monsters []entity.Monster
+	Monsters []entity.Monster 
 
 	Music       rl.Music
 	MusicVolume float32
@@ -34,8 +36,11 @@ type Engine struct {
 	Camera rl.Camera2D
 
 	MapJSON MapJSON
-
+	Background rl.Texture2D
 	LoadingScreen rl.Texture2D
+	Home rl.Texture2D
+	BackgroundHome rl.Texture2D
+	
 
 	IsRunning   bool
 	StateMenu   menu

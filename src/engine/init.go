@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	ScreenWidth  = 1400
-	ScreenHeight = 800
+	ScreenWidth  = 1920
+	ScreenHeight = 1080
 )
 
 func (e *Engine) Init() {
@@ -20,6 +20,8 @@ func (e *Engine) Init() {
 	e.Sprites = make(map[string]rl.Texture2D)
 
 	e.LoadingScreen = rl.LoadTexture("textures/menu.jpg")
+	e.Player.Class = entity.NINJA
+	e.Background = rl.LoadTexture("textures/entities/ninja/ninja.jpg")
 
 	// Initialisation des composants du jeu
 	e.InitEntities()

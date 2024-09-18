@@ -25,6 +25,9 @@ func (e *Engine) HomeLogic() {
 	if rl.IsKeyPressed(rl.KeyEscape) {
 		e.IsRunning = false
 	}
+	if rl.IsKeyPressed(rl.KeyU) {
+		e.StateMenu = CHARACTERS
+	}
 }
 
 func (e *Engine) SettingsLogic() {
@@ -34,6 +37,32 @@ func (e *Engine) SettingsLogic() {
 	}
 	//Musique
 	rl.UpdateMusicStream(e.Music)
+}
+
+func (e *Engine) charactersLogic() {
+	if rl.IsKeyPressed(rl.KeyEscape) {
+		e.StateMenu = HOME
+	}
+
+	if rl.IsKeyPressed(rl.KeyRight) {
+		if e.Player.Class < 1 {
+			e.Player.Class++
+		} else {
+			e.Player.Class = 0
+		}
+		e.UnloadCharacters()
+		e.loadCharacters()
+	}
+
+	if rl.IsKeyPressed(rl.KeyLeft) {
+		if e.Player.Class > 0 {
+			e.Player.Class--
+		} else {
+			e.Player.Class = 1
+		}
+		e.UnloadCharacters()
+		e.loadCharacters()
+	}
 }
 
 func (e *Engine) InGameLogic() {
