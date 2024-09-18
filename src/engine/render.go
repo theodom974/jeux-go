@@ -9,17 +9,48 @@ import (
 )
 
 func (e *Engine) Rendering() {
-	rl.DrawTexture(rl.LoadTexture("textures/menup.png"), 0, 0, rl.White)
+	rl.DrawTexture(e.BackgroundHome, 0, 0, rl.White)
+}
+
+func (e *Engine) charactersRendering() {
+	rl.ClearBackground(rl.Black)
+	//rl.DrawTexturePro(e.Background, rl.NewRectangle(0, 0, 1414, 2000), rl.NewRectangle(700, 0, 700, 1080), rl.NewVector2(0, 0), 0, rl.White)
+	rl.DrawText(">", 1500, 500, 200, rl.White)
+	switch e.Player.Class {
+	case entity.SAMOURAI:
+		rl.DrawTexturePro(e.Background, rl.NewRectangle(0, 0, 1414, 2000), rl.NewRectangle(700, 0, 700, 1080), rl.NewVector2(0, 0), 0, rl.White)
+		rl.DrawTexturePro(
+			e.Player.Sprite,
+			rl.NewRectangle(0, 0, 50, 70),
+			rl.NewRectangle(950, 200, 400, 560),
+			rl.Vector2{X: 0, Y: 0},
+			0,
+			rl.White,
+		)
+	case entity.NINJA:
+		rl.DrawTexturePro(e.Background, rl.NewRectangle(0, 0, 1414, 2000), rl.NewRectangle(700, 0, 700, 1080), rl.NewVector2(0, 0), 0, rl.White)
+		rl.DrawTexturePro(
+			e.Player.Sprite,
+			rl.NewRectangle(0, 0, 100, 100),
+			rl.NewRectangle(650, 150, 800, 800),
+			rl.Vector2{X: 0, Y: 0},
+			0,
+			rl.White,
+		)
+	}
 }
 
 func (e *Engine) HomeRendering() {
 	//rl.DrawTexture(e.LoadingScreen, 0, 0, rl.White)
 	rl.DrawTexturePro(e.LoadingScreen, rl.NewRectangle(float32(e.LoadingScreenSourceX), float32(e.LoadingScreenSourceY), 800, 450), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0,0), 0, rl.White)
 
+	
+	
+
 	rl.DrawText("Kenshin Sakura", int32(rl.GetScreenWidth())/5-rl.MeasureText("Kenshin Sakura", 80)/2, int32(rl.GetScreenHeight())/4-150, 80, rl.White)
 	rl.DrawText("[Enter] Pour Jouer", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/4+100, 50, rl.White)
 	rl.DrawText("[Esc] Pour Quitter", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2, 50, rl.White)
-	
+	rl.DrawText("[u] to an characters", int32(rl.GetScreenWidth())/2-rl.MeasureText("[u] to an characters", 20)/2, int32(rl.GetScreenHeight())/2+50, 20, rl.Red)
 }
 
 func (e *Engine) InGameRendering() {
@@ -49,6 +80,7 @@ func (e *Engine) PauseRendering() {
 	rl.DrawText("Paused", int32(rl.GetScreenWidth())/2-rl.MeasureText("Paused", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
 	rl.DrawText("[P] or [Esc] to resume", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to resume", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.RayWhite)
 	rl.DrawText("[Q] to Quit", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2+100, 20, rl.RayWhite)
+	rl.DrawText("[u] to an characters", int32(rl.GetScreenWidth())/2-rl.MeasureText("[u] to an characters", 20)/2, int32(rl.GetScreenHeight())/2+50, 20, rl.RayWhite)
 
 	rl.EndDrawing()
 }
@@ -57,7 +89,7 @@ func (e *Engine) RenderPlayer() {
 
 	rl.DrawTexturePro(
 		e.Player.Sprite,
-		rl.NewRectangle(80, 95, 100, 100),
+		rl.NewRectangle(-20, -5, 100, 100),
 		rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 150, 150),
 		rl.Vector2{X: 0, Y: 0},
 		0,

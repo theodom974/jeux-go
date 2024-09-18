@@ -12,10 +12,14 @@ func (engine *Engine) Run() {
 		rl.BeginDrawing()
 
 		switch engine.StateMenu {
-		case HOME:
+		case HOME: 
 			engine.HomeRendering()
 			engine.HomeLogic()
 
+		case CHARACTERS:
+			engine.charactersRendering()
+			engine.charactersLogic()
+			
 		case SETTINGS:
 			engine.SettingsLogic()
 

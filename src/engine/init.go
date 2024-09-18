@@ -19,6 +19,10 @@ func (e *Engine) Init() {
 	e.IsRunning = true
 	e.Sprites = make(map[string]rl.Texture2D)
 
+	e.LoadingScreen = rl.LoadTexture("textures/menu.jpg")
+	e.Player.Class = entity.NINJA
+	e.Background = rl.LoadTexture("textures/entities/ninja/ninja.jpg")
+
 	// Initialisation des composants du jeu
 	e.InitEntities()
 	e.InitCamera()

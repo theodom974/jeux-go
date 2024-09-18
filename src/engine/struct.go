@@ -12,9 +12,11 @@ const (
 	HOME     menu = iota
 	SETTINGS menu = iota
 	PLAY     menu = iota
+	CHARACTERS menu = iota
+	Parame
 )
 
-type engine int
+type engine int 
 
 const (
 	INGAME  engine = iota

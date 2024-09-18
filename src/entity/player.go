@@ -8,6 +8,13 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+type class int
+
+const (
+	NINJA class = iota
+	SAMOURAI class = iota
+)
+
 type Player struct {
 	Position  rl.Vector2
 	Health    int
@@ -19,6 +26,7 @@ type Player struct {
     LastDash    time.Time 
 	Energy    int
 
+	Class class
 	IsAlive bool
 
 	Sprite rl.Texture2D
