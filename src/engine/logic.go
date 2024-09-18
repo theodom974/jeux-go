@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"fmt"
 	"main/src/entity"
 	"main/src/fight"
 	"time"
@@ -10,6 +11,7 @@ import (
 
 func (e *Engine) HomeLogic() {
 	e.LoadingScreenCountFrame++
+	fmt.Println(e.LoadingScreenCountFrame)
 	if e.LoadingScreenCountFrame%4 == 1 {
 		if e.LoadingScreenSourceX == 15200 {
 			e.LoadingScreenSourceX = 0
