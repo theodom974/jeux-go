@@ -37,6 +37,7 @@ func (engine *Engine) Run() {
 				//...
 			}
 		}
+		rl.EndDrawing()
 	}
-	rl.EndDrawing()
+	
 }
