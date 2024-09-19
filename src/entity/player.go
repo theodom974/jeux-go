@@ -13,6 +13,8 @@ type class int
 const (
 	NINJA class = iota
 	SAMOURAI class = iota
+	MAITRE class = iota
+	RYUZO class = iota
 )
 
 type Player struct {
@@ -20,7 +22,7 @@ type Player struct {
 	Health    int
 	Money     int
 	Speed     float32
-	Inventory []item.Item
+	Inventaire []item.Item
 	NormalSpeed float32  
     Dashing     bool      
     LastDash    time.Time 
@@ -33,7 +35,7 @@ type Player struct {
 }
 
 func (p *Player) Attack(m *Monster) {
-	m.Health -= 2
+	m.Health -= 15
 }
 
 func (p *Player) ToString() {
@@ -43,5 +45,5 @@ func (p *Player) ToString() {
 		Argent: %d,
 		Inventaire: %+v
 	
-	\n`, p.Health, p.Money, p.Inventory)
+	\n`, p.Health, p.Money, p.Inventaire)
 }

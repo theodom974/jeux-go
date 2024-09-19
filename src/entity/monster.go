@@ -15,6 +15,7 @@ type Monster struct {
 	Loot     []item.Item
 	Worth    int //valeur en argent quand tué
 
+	Class class
 	IsAlive bool
 
 	Sprite rl.Texture2D
