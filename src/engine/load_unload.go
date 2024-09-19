@@ -9,8 +9,9 @@ import (
 func (e *Engine) Load() {
 	// Chargement des textures du personnage
 	e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-Attack01.png")
-	e.Background = rl.LoadTexture("textures/image_pause.png")
+	e.Background = rl.LoadTexture("textures/image_pause.jpg")
 	e.LoadingScreen = rl.LoadTexture("textures/menu2.png")
+	e.Background3 = rl.LoadTexture("textures/settings.jpg")
 }
 
 func (e *Engine) Unload() {
@@ -33,7 +34,7 @@ func (e *Engine) UnloadCharacters() {
 	rl.UnloadTexture(e.Player.Sprite)
 }
 
-func (e *Engine) loadCharacters() {
+func (e *Engine) LoadCharacters() {
 	if e.Player.Class == entity.NINJA {
 		e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-idle.png")
 		e.Background = rl.LoadTexture("textures/entities/ninja/ninja.jpg")
