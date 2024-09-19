@@ -78,6 +78,11 @@ func (e *Engine) charactersLogic() {
 }
 
 func (e *Engine) InGameLogic() {
+
+	if !e.Player.IsAlive {
+		e.StateEngine = GAMEOVER
+	}
+
 	//dash
 	dashSpeed := e.Player.Speed * 1.5
 	dashDuration := 100 * time.Millisecond
@@ -198,4 +203,13 @@ func (e *Engine) PauseLogic() {
 
 	//Musique
 	rl.UpdateMusicStream(e.Music)
+}
+
+func (e *Engine) GameOverLogic() {
+	if rl.IsKeyPressed(rl.KeyT) {
+		e.Player.IsAlive = true
+		e.Player.Health = 100
+		e.Player.Position = rl.NewVector2(100, 200)
+		e.StateEngine = INGAME
+	}
 }
