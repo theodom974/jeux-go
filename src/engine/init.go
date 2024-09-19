@@ -50,22 +50,31 @@ func (e *Engine) InitEntities() {
 	}
 
 		e.Monsters = append(e.Monsters, entity.Monster{
-			Name:     "claude",
-			Position: rl.Vector2{X: 400, Y: 320},
-			Health:   50,
+			Name:     "Maitre",
+			Position: rl.Vector2{X: 1270, Y: 900},
+			Health:   60,
 			Damage:   3,
 			Loot:     []item.Item{},
 			Worth:    12,
 
 			IsAlive: true,
-			Sprite:  rl.LoadTexture("textures/entities/orc/Orc-Idle.png"),
+			Sprite:  rl.LoadTexture("textures/entities/Villageois/Villageois-M.png"),
+		})
+		e.Monsters = append(e.Monsters, entity.Monster{
+			Name: "Ryuzo",
+			Position: rl.Vector2{X: 140, Y: 1120},
+			Health: 100,
+			Damage: 25,
+
+			IsAlive: true,
+			Sprite: rl.LoadTexture("textures/entities/mechant/Idle.png"),
 		})
 
 	e.Player.Money = 12
 
 	e.Pnjs = append(e.Pnjs, entity.Pnjs{
 		Name:     "Garde 1",
-		Position: rl.Vector2{X: 975, Y: 748},
+		Position: rl.Vector2{X: 1310, Y: 810},
 		Health:   100,
 
 		IsAlive: true,
@@ -73,19 +82,11 @@ func (e *Engine) InitEntities() {
 	})
 	e.Pnjs = append(e.Pnjs, entity.Pnjs{
 		Name:     "Garde 2",
-		Position: rl.Vector2{X: 975, Y: 675},
+		Position: rl.Vector2{X: 1200, Y: 810},
 		Health:   100,
 
 		IsAlive: true,
 		Sprite:  rl.LoadTexture("textures/entities/Garde/Garde-H.png"),
-	})
-	e.Pnjs = append(e.Pnjs, entity.Pnjs{
-		Name:     "Femme",
-		Position: rl.Vector2{X: 140, Y: 1120},
-		Health:   100,
-
-		IsAlive: true,
-		Sprite:  rl.LoadTexture("textures/entities/Garde/Gade-F.png"),
 	})
 	e.Pnjs = append(e.Pnjs, entity.Pnjs{
 		Name:     "Villageois",

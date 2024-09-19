@@ -9,7 +9,7 @@ import (
 )
 
 func (e *Engine) Rendering() {
-	
+
 }
 
 func (e *Engine) charactersRendering() {
@@ -42,10 +42,7 @@ func (e *Engine) charactersRendering() {
 
 func (e *Engine) HomeRendering() {
 	//rl.DrawTexture(e.LoadingScreen, 0, 0, rl.White)
-	rl.DrawTexturePro(e.LoadingScreen, rl.NewRectangle(float32(e.LoadingScreenSourceX), float32(e.LoadingScreenSourceY), 800, 450), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0,0), 0, rl.White)
-
-	
-	
+	rl.DrawTexturePro(e.LoadingScreen, rl.NewRectangle(float32(e.LoadingScreenSourceX), float32(e.LoadingScreenSourceY), 800, 450), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0, 0), 0, rl.White)
 
 	rl.DrawText("Kenshin Sakura", int32(rl.GetScreenWidth())/5-rl.MeasureText("Kenshin Sakura", 80)/2, int32(rl.GetScreenHeight())/4-150, 80, rl.White)
 	rl.DrawText("[Enter] Pour Jouer", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/4+100, 50, rl.White)
@@ -69,13 +66,13 @@ func (e *Engine) InGameRendering() {
 	// Ecriture fixe (car pas affectée par le mode camera)
 	rl.DrawText("Playing", int32(rl.GetScreenWidth())/2-rl.MeasureText("Playing", 40)/2, int32(rl.GetScreenHeight())/2-350, 40, rl.RayWhite)
 	rl.DrawText("[P] or [Esc] to Pause", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to Pause", 20)/2, int32(rl.GetScreenHeight())/2-300, 20, rl.RayWhite)
-	rl.DrawText(fmt.Sprintf("Health : %d ", e.Player.Health), int32(rl.GetScreenWidth())/26-rl.MeasureText("Health", 10)/2,int32(rl.GetScreenHeight())/20, 25, rl.Green)
-	rl.DrawText(fmt.Sprintf("Energy : %d ", e.Player.Energy), int32(rl.GetScreenWidth())/26-rl.MeasureText("Health", 10)/2,int32(rl.GetScreenHeight())/12, 25, rl.Yellow)
+	rl.DrawText(fmt.Sprintf("Health : %d ", e.Player.Health), int32(rl.GetScreenWidth())/26-rl.MeasureText("Health", 10)/2, int32(rl.GetScreenHeight())/20, 25, rl.Green)
+	rl.DrawText(fmt.Sprintf("Energy : %d ", e.Player.Energy), int32(rl.GetScreenWidth())/26-rl.MeasureText("Health", 10)/2, int32(rl.GetScreenHeight())/12, 25, rl.Yellow)
 
 }
 
 func (e *Engine) PauseRendering() {
-	rl.DrawTexture(e.Background , 0, 0, rl.White)
+	rl.DrawTexture(e.Background, 0, 0, rl.White)
 
 	rl.DrawText("Paused", int32(rl.GetScreenWidth())/2-rl.MeasureText("Paused", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
 	rl.DrawText("[P] or [Esc] to resume", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to resume", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.RayWhite)
@@ -85,38 +82,62 @@ func (e *Engine) PauseRendering() {
 	rl.EndDrawing()
 }
 
-func (e *Engine) InventaireRendering(){
-	rl.DrawText("[Tab] to open your Inventory", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Tab] to open your Inventory", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
+func (e *Engine) InventaireRendering() {
+	rl.DrawTexturePro(e.LoadingInventaire, rl.NewRectangle(0, 0, 316, 149), rl.NewRectangle(0, 100, 500, 500), rl.NewVector2(0, 0), 0, rl.White)
 }
 
 func (e *Engine) RenderPlayer() {
-
-	rl.DrawTexturePro(
-		e.Player.Sprite,
-		rl.NewRectangle(0, 0, 100, 100),
-		rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 150, 150),
-		rl.Vector2{X: 0, Y: 0},
-		0,
-		rl.White,
-	)
-
+	if e.Player.Class == entity.NINJA {
+		rl.DrawTexturePro(
+			e.Player.Sprite,
+			rl.NewRectangle(80, 95, 100, 100),
+			rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 150, 150),
+			rl.Vector2{X: 0, Y: 0},
+			0,
+			rl.White,
+		)
+	}
+	if e.Player.Class == entity.SAMOURAI {
+		rl.DrawTexturePro(
+			e.Player.Sprite,
+			rl.NewRectangle(0, 0, 50, 50),
+			rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 100, 100),
+			rl.Vector2{X: 0, Y: 0},
+			0,
+			rl.White,
+		)
+	}
 }
-
 
 func (e *Engine) RenderMonsters() {
 	for _, monster := range e.Monsters {
-	  if monster.IsAlive {
-			rl.DrawTexturePro(
-				monster.Sprite,
-				rl.NewRectangle(0, 0, 100, 100),
-				rl.NewRectangle(monster.Position.X, monster.Position.Y, 150, 150),
-				rl.Vector2{X: 0, Y: 0},
-				0,
-				rl.White,
-			)
-			rl.DrawText(strconv.Itoa(monster.Health) + "/50", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White )
+		if monster.IsAlive {
+			if monster.Name == "Ryuzo" {
+				rl.DrawTexturePro(
+					monster.Sprite,
+					rl.NewRectangle(0, 0, 128, 128),
+					rl.NewRectangle(monster.Position.X, monster.Position.Y, 100, 100),
+					rl.Vector2{X: 0, Y: 0},
+					0,
+					rl.White,
+				)
+				rl.DrawText(strconv.Itoa(monster.Health)+"/100", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White)
+
+			}
 		}
-		
+		if monster.IsAlive {
+			if monster.Name == "Maitre" {
+				rl.DrawTexturePro(
+					monster.Sprite,
+					rl.NewRectangle(0, 0, 100, 100),
+					rl.NewRectangle(monster.Position.X, monster.Position.Y, 150, 150),
+					rl.Vector2{X: 0, Y: 0},
+					0,
+					rl.White,
+				)
+				rl.DrawText(strconv.Itoa(monster.Health)+"/60", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White)
+			}
+		}
 	}
 }
 
@@ -138,7 +159,7 @@ func (e *Engine) RenderDialog(m entity.Monster, sentence string) {
 
 	rl.DrawText(
 		sentence,
-		int32(m.Position.X),
+		int32(m.Position.X)+25,
 		int32(m.Position.Y)+50,
 		10,
 		rl.RayWhite,
@@ -146,20 +167,19 @@ func (e *Engine) RenderDialog(m entity.Monster, sentence string) {
 
 	rl.EndMode2D()
 }
-
-func (e *Engine) RendrDialog(p entity.Pnjs, sentence string) {
+func (e *Engine) RenderDialo(m entity.Monster, sentence string) {
 	rl.BeginMode2D(e.Camera)
 
 	rl.DrawText(
 		sentence,
-		int32(p.Position.X),
-		int32(p.Position.Y)+100,
+		int32(m.Position.X)+25,
+		int32(m.Position.Y)+95,
 		10,
 		rl.RayWhite,
 	)
-rl.EndMode2D()	
-}
 
+	rl.EndMode2D()
+}
 
 func (e *Engine) RnderDialog(p entity.Pnjs, sentence string) {
 	rl.BeginMode2D(e.Camera)
@@ -167,11 +187,11 @@ func (e *Engine) RnderDialog(p entity.Pnjs, sentence string) {
 	rl.DrawText(
 		sentence,
 		int32(p.Position.X)+50,
-		int32(p.Position.Y)+75,
+		int32(p.Position.Y)-2,
 		10,
 		rl.RayWhite,
 	)
-rl.EndMode2D()	
+	rl.EndMode2D()
 }
 func (e *Engine) RendeDialog(p entity.Pnjs, sentence string) {
 	rl.BeginMode2D(e.Camera)
@@ -183,7 +203,20 @@ func (e *Engine) RendeDialog(p entity.Pnjs, sentence string) {
 		10,
 		rl.RayWhite,
 	)
-rl.EndMode2D()	
+	rl.EndMode2D()
+}
+
+func (e *Engine) endeDialog(p entity.Pnjs, sentence string) {
+	rl.BeginMode2D(e.Camera)
+
+	rl.DrawText(
+		sentence,
+		int32(p.Position.X)-25,
+		int32(p.Position.Y)+90,
+		10,
+		rl.RayWhite,
+	)
+	rl.EndMode2D()
 }
 func (e *Engine) RenerDialog(p entity.Pnjs, sentence string) {
 	rl.BeginMode2D(e.Camera)
@@ -195,6 +228,5 @@ func (e *Engine) RenerDialog(p entity.Pnjs, sentence string) {
 		10,
 		rl.RayWhite,
 	)
-rl.EndMode2D()	
+	rl.EndMode2D()
 }
-

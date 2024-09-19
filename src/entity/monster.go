@@ -15,13 +15,14 @@ type Monster struct {
 	Loot     []item.Item
 	Worth    int //valeur en argent quand tué
 
+	Class class
 	IsAlive bool
 
 	Sprite rl.Texture2D
 }
 
 func (m *Monster) Attack(p *Player) {
-	p.Health -= 1
+	p.Health -= 5
 }
 
 

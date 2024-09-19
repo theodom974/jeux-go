@@ -13,6 +13,8 @@ type class int
 const (
 	NINJA class = iota
 	SAMOURAI class = iota
+	MAITRE class = iota
+	RYUZO class = iota
 )
 
 type Player struct {
@@ -33,7 +35,7 @@ type Player struct {
 }
 
 func (p *Player) Attack(m *Monster) {
-	m.Health -= 2
+	m.Health -= 15
 }
 
 func (p *Player) ToString() {

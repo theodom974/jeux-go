@@ -11,6 +11,7 @@ func (e *Engine) Load() {
 	e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-Attack01.png")
 	e.Background = rl.LoadTexture("textures/image_pause.jpg")
 	e.LoadingScreen = rl.LoadTexture("textures/menu2.png")
+	e.LoadingInventaire = rl.LoadTexture("textures/Inventaire.png")
 }
 
 func (e *Engine) Unload() {
@@ -35,7 +36,7 @@ func (e *Engine) UnloadCharacters() {
 
 func (e *Engine) loadCharacters() {
 	if e.Player.Class == entity.NINJA {
-		e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-idle.png")
+		e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-Attack01.png")
 		e.Background = rl.LoadTexture("textures/entities/ninja/ninja.jpg")
 	}
 	if e.Player.Class == entity.SAMOURAI {

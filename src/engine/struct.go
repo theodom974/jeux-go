@@ -46,6 +46,9 @@ type Engine struct {
 	LoadingScreen rl.Texture2D
 	LoadingScreenSourceX int
 	LoadingScreenSourceY int
+	LoadingInventaire rl.Texture2D
+	LoadingInventaireX int
+	LoadingInventaireY int
 
 	IsRunning   bool
 	StateMenu   menu
