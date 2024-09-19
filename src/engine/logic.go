@@ -108,7 +108,6 @@ func (e *Engine) InGameLogic() {
 		}
 	}
 
-
 	// Mouvement
 	if rl.IsKeyDown(rl.KeyW) || rl.IsKeyDown(rl.KeyUp) {
 		e.Player.Position.Y -= e.Player.Speed
