@@ -12,23 +12,23 @@ func (engine *Engine) Run() {
 		rl.BeginDrawing()
 
 		switch engine.StateMenu {
-		case HOME: 
+		case HOME:
 			engine.HomeRendering()
 			engine.HomeLogic()
 
 		case CHARACTERS:
-			engine.charactersRendering()
-			engine.charactersLogic()
-			
+			engine.CharactersRendering()
+			engine.CharactersLogic()
+
 		case SETTINGS:
 			engine.SettingsLogic()
+			engine.SettingsRendering()
 
 		case PLAY:
 			switch engine.StateEngine {
 			case INGAME:
 				engine.InGameRendering()
 				engine.InGameLogic()
-
 			case PAUSE:
 				engine.PauseRendering()
 				engine.PauseLogic()
@@ -37,7 +37,6 @@ func (engine *Engine) Run() {
 				//...
 			}
 		}
-
-		rl.EndDrawing()
 	}
+	rl.EndDrawing()
 }

@@ -28,7 +28,7 @@ func (e *Engine) Init() {
 	e.InitCamera()
 	e.InitMusic()
 	e.InitMap("textures/map/tilesets/map.json")
-
+	//e.InitMap2("textures/map/")
 	e.LoadingScreenSourceX = 0
 	e.LoadingScreenSourceY = 0
 

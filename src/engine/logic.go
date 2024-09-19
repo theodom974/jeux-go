@@ -40,18 +40,23 @@ func (e *Engine) HomeLogic() {
 	if rl.IsKeyPressed(rl.KeyU) {
 		e.StateMenu = CHARACTERS
 	}
+	if rl.IsKeyPressed(rl.KeyK) {
+		e.Camera.Zoom = 1
+		e.StateMenu = SETTINGS
+	}
 }
 
 func (e *Engine) SettingsLogic() {
 	//Menus
-	if rl.IsKeyPressed(rl.KeyB) {
+	if rl.IsKeyPressed(rl.KeyK) {
+		e.Camera.Zoom = 2
 		e.StateMenu = HOME
 	}
 	//Musique
 	rl.UpdateMusicStream(e.Music)
 }
 
-func (e *Engine) charactersLogic() {
+func (e *Engine) CharactersLogic() {
 	if rl.IsKeyPressed(rl.KeyEscape) {
 		e.StateMenu = HOME
 	}
@@ -63,7 +68,7 @@ func (e *Engine) charactersLogic() {
 			e.Player.Class = 0
 		}
 		e.UnloadCharacters()
-		e.loadCharacters()
+		e.LoadCharacters()
 	}
 
 	if rl.IsKeyPressed(rl.KeyLeft) {
@@ -73,7 +78,7 @@ func (e *Engine) charactersLogic() {
 			e.Player.Class = 1
 		}
 		e.UnloadCharacters()
-		e.loadCharacters()
+		e.LoadCharacters()
 	}
 }
 
@@ -97,6 +102,8 @@ func (e *Engine) InGameLogic() {
 			e.Player.Speed = 2
 		}
 	}
+
+
 	// Mouvement
 	if rl.IsKeyDown(rl.KeyW) || rl.IsKeyDown(rl.KeyUp) {
 		e.Player.Position.Y -= e.Player.Speed
@@ -129,6 +136,10 @@ func (e *Engine) InGameLogic() {
 		rl.PlayMusicStream(e.Music)
 	}
 	rl.UpdateMusicStream(e.Music)
+}
+
+func (e *Engine) TempleLogic() {
+
 }
 
 func (e *Engine) CheckCollisions() {
@@ -177,6 +188,10 @@ func (e *Engine) PnjsColliions() {
 			}
 		}
 	}
+}
+
+func (e *Engine) TempleCollisions() {
+
 }
 
 func (e *Engine) NormalTalk(m entity.Monster, sentence string) {

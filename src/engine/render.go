@@ -8,13 +8,13 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
-func (e *Engine) Rendering() {
-	
+func (e *Engine) SettingsRendering() {
+	rl.DrawTexturePro(e.Background3, rl.NewRectangle(0, 0, 2000, 1414), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0, 0), 0, rl.White)
 }
 
-func (e *Engine) charactersRendering() {
+func (e *Engine) CharactersRendering() {
 	rl.ClearBackground(rl.Black)
-	//rl.DrawTexturePro(e.Background, rl.NewRectangle(0, 0, 1414, 2000), rl.NewRectangle(700, 0, 700, 1080), rl.NewVector2(0, 0), 0, rl.White)
+	//rl.DrawTexturePro(e.Background, rl.NewRectangle(0, 0, 1414, 2000), rl.NewRectangle(0, 0, 700, 1080), rl.NewVector2(0, 0), 0, rl.White)
 	rl.DrawText(">", 1500, 500, 200, rl.White)
 	switch e.Player.Class {
 	case entity.SAMOURAI:
@@ -48,22 +48,23 @@ func (e *Engine) HomeRendering() {
 	
 
 	rl.DrawText("Kenshin Sakura", int32(rl.GetScreenWidth())/5-rl.MeasureText("Kenshin Sakura", 80)/2, int32(rl.GetScreenHeight())/4-150, 80, rl.White)
-	rl.DrawText("[Enter] Pour Jouer", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/4+100, 50, rl.White)
-	rl.DrawText("[Esc] Pour Quitter", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2, 50, rl.White)
-	rl.DrawText("[u] to an characters", int32(rl.GetScreenWidth())/2-rl.MeasureText("[u] to an characters", 20)/2, int32(rl.GetScreenHeight())/2+50, 20, rl.Red)
+	rl.DrawText("[Enter] play the game", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Enter] to Play", 20)/2, int32(rl.GetScreenHeight())/4+100, 50, rl.White)
+	rl.DrawText("[Esc] to quit", int32(rl.GetScreenWidth())/8-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/4+400, 50, rl.White)
+	rl.DrawText("[u] to select characters", int32(rl.GetScreenWidth())/8-rl.MeasureText("[u] to selet characters", 20)/2, int32(rl.GetScreenHeight())/4+200, 50, rl.White)
+	rl.DrawText("[k] settings", int32(rl.GetScreenWidth())/8-rl.MeasureText("[k] settings", 20)/2, int32(rl.GetScreenHeight())/4+300, 50, rl.White)
 }
+
 
 func (e *Engine) InGameRendering() {
 	rl.ClearBackground(rl.Gray)
 
 	rl.BeginMode2D(e.Camera) // On commence le rendu camera
 
-	e.RenderMap()
+	e.RenderMap(e.MapJSON)
 
 	e.RenderMonsters()
 	e.RenderPlayer()
 	e.RenderPnjs()
-
 	rl.EndMode2D() // On finit le rendu camera
 
 	// Ecriture fixe (car pas affectée par le mode camera)
@@ -74,15 +75,21 @@ func (e *Engine) InGameRendering() {
 
 }
 
+
 func (e *Engine) PauseRendering() {
 	rl.DrawTexture(e.Background , 0, 0, rl.White)
 
 	rl.DrawText("Paused", int32(rl.GetScreenWidth())/2-rl.MeasureText("Paused", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
 	rl.DrawText("[P] or [Esc] to resume", int32(rl.GetScreenWidth())/2-rl.MeasureText("[P] or [Esc] to resume", 20)/2, int32(rl.GetScreenHeight())/2, 20, rl.RayWhite)
 	rl.DrawText("[Q] to Quit", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Esc] to Quit", 20)/2, int32(rl.GetScreenHeight())/2+100, 20, rl.RayWhite)
-	rl.DrawText("[u] to an characters", int32(rl.GetScreenWidth())/2-rl.MeasureText("[u] to an characters", 20)/2, int32(rl.GetScreenHeight())/2+50, 20, rl.RayWhite)
+
 
 	rl.EndDrawing()
+}
+
+func (e *Engine) TempleRendering() {
+	rl.ClearBackground(rl.Red)
+	//e.RenderMap2(&e.MapArene)
 }
 
 func (e *Engine) RenderPlayer() {
