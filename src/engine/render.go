@@ -85,11 +85,15 @@ func (e *Engine) PauseRendering() {
 	rl.EndDrawing()
 }
 
+func (e *Engine) InventaireRendering(){
+	rl.DrawText("[Tab] to open your Inventory", int32(rl.GetScreenWidth())/2-rl.MeasureText("[Tab] to open your Inventory", 40)/2, int32(rl.GetScreenHeight())/2-150, 40, rl.Red)
+}
+
 func (e *Engine) RenderPlayer() {
 
 	rl.DrawTexturePro(
 		e.Player.Sprite,
-		rl.NewRectangle(-20, -5, 100, 100),
+		rl.NewRectangle(0, 0, 100, 100),
 		rl.NewRectangle(e.Player.Position.X, e.Player.Position.Y, 150, 150),
 		rl.Vector2{X: 0, Y: 0},
 		0,
@@ -97,6 +101,7 @@ func (e *Engine) RenderPlayer() {
 	)
 
 }
+
 
 func (e *Engine) RenderMonsters() {
 	for _, monster := range e.Monsters {
@@ -148,9 +153,48 @@ func (e *Engine) RendrDialog(p entity.Pnjs, sentence string) {
 	rl.DrawText(
 		sentence,
 		int32(p.Position.X),
+		int32(p.Position.Y)+100,
+		10,
+		rl.RayWhite,
+	)
+rl.EndMode2D()	
+}
+
+
+func (e *Engine) RnderDialog(p entity.Pnjs, sentence string) {
+	rl.BeginMode2D(e.Camera)
+
+	rl.DrawText(
+		sentence,
+		int32(p.Position.X)+50,
+		int32(p.Position.Y)+75,
+		10,
+		rl.RayWhite,
+	)
+rl.EndMode2D()	
+}
+func (e *Engine) RendeDialog(p entity.Pnjs, sentence string) {
+	rl.BeginMode2D(e.Camera)
+
+	rl.DrawText(
+		sentence,
+		int32(p.Position.X)-25,
 		int32(p.Position.Y)+50,
 		10,
 		rl.RayWhite,
 	)
 rl.EndMode2D()	
 }
+func (e *Engine) RenerDialog(p entity.Pnjs, sentence string) {
+	rl.BeginMode2D(e.Camera)
+
+	rl.DrawText(
+		sentence,
+		int32(p.Position.X)-25,
+		int32(p.Position.Y)+50,
+		10,
+		rl.RayWhite,
+	)
+rl.EndMode2D()	
+}
+

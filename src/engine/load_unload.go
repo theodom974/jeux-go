@@ -9,7 +9,7 @@ import (
 func (e *Engine) Load() {
 	// Chargement des textures du personnage
 	e.Player.Sprite = rl.LoadTexture("textures/entities/ninja/ninja-Attack01.png")
-	e.Background = rl.LoadTexture("textures/image_pause.png")
+	e.Background = rl.LoadTexture("textures/image_pause.jpg")
 	e.LoadingScreen = rl.LoadTexture("textures/menu2.png")
 }
 

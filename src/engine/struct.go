@@ -23,11 +23,11 @@ const (
 	INFIGHT engine = iota
 	PAUSE    engine = iota
 	GAMEOVER engine = iota
+	INVENTAIRE engine = iota
 )
 
 type Engine struct {
-
-
+	
 	Player   entity.Player
 	Monsters []entity.Monster
 	Pnjs []entity.Pnjs

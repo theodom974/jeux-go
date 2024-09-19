@@ -35,6 +35,11 @@ func (engine *Engine) Run() {
 
 			case GAMEOVER:
 				//...
+			
+			case INVENTAIRE:
+				engine.InventaireRendering()
+				engine.InventaireLogic()
+
 			}
 		}
 

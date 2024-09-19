@@ -42,7 +42,7 @@ func (e *Engine) InitEntities() {
 		Money:     1000,
 		Speed:     2,
 		Energy:    50,
-		Inventory: []item.Item{},
+		Inventaire: []item.Item{},
 
 		IsAlive: true,
 
@@ -81,7 +81,7 @@ func (e *Engine) InitEntities() {
 	})
 	e.Pnjs = append(e.Pnjs, entity.Pnjs{
 		Name:     "Femme",
-		Position: rl.Vector2{X: 140, Y: 1100},
+		Position: rl.Vector2{X: 140, Y: 1120},
 		Health:   100,
 
 		IsAlive: true,
@@ -89,7 +89,7 @@ func (e *Engine) InitEntities() {
 	})
 	e.Pnjs = append(e.Pnjs, entity.Pnjs{
 		Name:     "Villageois",
-		Position: rl.Vector2{X: 140, Y: 195},
+		Position: rl.Vector2{X: 160, Y: 195},
 		Health:   100,
 
 		IsAlive: true,

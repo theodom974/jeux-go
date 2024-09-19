@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"main/src/entity"
 	"main/src/fight"
+	"main/src/item"
 	"time"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
@@ -81,7 +82,7 @@ func (e *Engine) InGameLogic() {
 	//dash
 	dashSpeed := e.Player.Speed * 1.5
 	dashDuration := 100 * time.Millisecond
-	dashCooldown := 5 * time.Second
+	dashCooldown := 2 * time.Second
 	now := time.Now()
 
 	if (rl.IsKeyPressed(rl.KeySpace) || rl.IsKeyPressed(rl.KeySpace)) && now.Sub(e.Player.LastDash) > dashCooldown {
@@ -125,7 +126,7 @@ func (e *Engine) InGameLogic() {
 
 	//Musique
 	if !rl.IsMusicStreamPlaying(e.Music) {
-		e.Music = rl.LoadMusicStream("sounds/music/Vent2.mp3")
+		e.Music = rl.LoadMusicStream("sounds/music/oiseau.mp3")
 		rl.PlayMusicStream(e.Music)
 	}
 	rl.UpdateMusicStream(e.Music)
@@ -163,27 +164,49 @@ func (e *Engine) MonsterCollisions() {
 func (e *Engine) PnjsColliions() {
 
 	for _, pnj := range e.Pnjs {
-		if pnj.Position.X > e.Player.Position.X-20 &&
-			pnj.Position.X < e.Player.Position.X+20 &&
-			pnj.Position.Y > e.Player.Position.Y-20 &&
-			pnj.Position.Y < e.Player.Position.Y+20 {
+		if pnj.Position.X > e.Player.Position.X-40 &&
+			pnj.Position.X < e.Player.Position.X+40 &&
+			pnj.Position.Y > e.Player.Position.Y-40 &&
+			pnj.Position.Y < e.Player.Position.Y+40 {
 
 			if pnj.Name == "Garde 1" {
-				e.NoralTalkp(pnj, "Salut cher voyageur")
+				e.NralTalkp(pnj, "\n   Salut cher \n     voyageur")
 			} else if pnj.Name == "Garde 2" {
-				e.NoralTalkp(pnj, "jte baise")
-			} else {
+				e.NormaleTlkp(pnj, "comment allez \n   vous ?")
+			} else if pnj.Name == "Femme" {
+				e.NoralTalkp(pnj, "Tu es sur \nde rentré ?")
+			}else if pnj.Name == "SDF" {
+				e.NormaTalkp(pnj, "Salut cher voyageur voici une arme pour ta quête !")
+				if rl.IsKeyPressed(rl.KeyR) {
+					e.Player.Inventaire = append(e.Player.Inventaire, item.Item{
+						Name: "Epée",
+						Price: 1,
+						IsConsumable: false,
+						IsEquippable: true,
+					})
+				}
+			}
+
 				//quand tu parle a aucun pnj
 			}
 		}
 	}
-}
+
 
 func (e *Engine) NormalTalk(m entity.Monster, sentence string) {
 	e.RenderDialog(m, sentence)
 }
 func (e *Engine) NoralTalkp(p entity.Pnjs, sentence string) {
 	e.RendrDialog(p, sentence)
+}
+func (e *Engine) NralTalkp(p entity.Pnjs, sentence string){
+	e.RnderDialog(p,sentence)
+}
+func (e* Engine) NormaleTlkp(p entity.Pnjs, sentence string){
+	e.RendeDialog(p,sentence)
+}
+func (e *Engine) NormaTalkp(p entity.Pnjs, sentence string){
+	e.RenerDialog(p,sentence)
 }
 
 func (e *Engine) PauseLogic() {
@@ -198,4 +221,8 @@ func (e *Engine) PauseLogic() {
 
 	//Musique
 	rl.UpdateMusicStream(e.Music)
+}
+
+func(e*Engine) InventaireLogic(){
+	rl.IsKeyPressed(rl.KeyTab)
 }
