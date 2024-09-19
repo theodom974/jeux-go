@@ -12,6 +12,7 @@ func (e *Engine) Load() {
 	e.Background = rl.LoadTexture("textures/image_pause.jpg")
 	e.LoadingScreen = rl.LoadTexture("textures/menu2.png")
 	e.Background3 = rl.LoadTexture("textures/settings.jpg")
+	e.Lore3 = rl.LoadTexture("textures/cartedebut.png")
 }
 
 func (e *Engine) Unload() {

@@ -29,10 +29,8 @@ func (e *Engine) HomeLogic() {
 
 	//Menus
 	if rl.IsKeyPressed(rl.KeyEnter) {
-		e.StateMenu = PLAY
+		e.StateMenu = LORE
 		rl.StopMusicStream(e.Music)
-		e.StateEngine = INGAME
-
 	}
 	if rl.IsKeyPressed(rl.KeyEscape) {
 		e.IsRunning = false
@@ -108,7 +106,6 @@ func (e *Engine) InGameLogic() {
 		}
 	}
 
-
 	// Mouvement
 	if rl.IsKeyDown(rl.KeyW) || rl.IsKeyDown(rl.KeyUp) {
 		e.Player.Position.Y -= e.Player.Speed
@@ -142,10 +139,14 @@ func (e *Engine) InGameLogic() {
 	}
 	rl.UpdateMusicStream(e.Music)
 }
-
-func (e *Engine) TempleLogic() {
-
+func (e *Engine) LoreLogic() {
+	if rl.IsKeyPressed(rl.KeyEnter) {
+		e.StateMenu = PLAY
+		e.StateEngine = INGAME
+		rl.StopMusicStream(e.Music)
+	}
 }
+
 
 func (e *Engine) CheckCollisions() {
 
@@ -203,7 +204,7 @@ func (e *Engine) NormalTalk(m entity.Monster, sentence string) {
 	e.RenderDialog(m, sentence)
 }
 func (e *Engine) NoralTalkp(p entity.Pnjs, sentence string) {
-	e.RendrDialog(p, sentence)
+	//e.RenderDialog(p, sentence)
 }
 
 func (e *Engine) PauseLogic() {

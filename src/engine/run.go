@@ -24,11 +24,16 @@ func (engine *Engine) Run() {
 			engine.SettingsLogic()
 			engine.SettingsRendering()
 
+		case LORE:
+			engine.LoreLogic()
+			engine.LoreRendering()
+
 		case PLAY:
 			switch engine.StateEngine {
 			case INGAME:
 				engine.InGameRendering()
 				engine.InGameLogic()
+
 			case PAUSE:
 				engine.PauseRendering()
 				engine.PauseLogic()

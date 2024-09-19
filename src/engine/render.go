@@ -11,6 +11,10 @@ import (
 func (e *Engine) SettingsRendering() {
 	rl.DrawTexturePro(e.Background3, rl.NewRectangle(0, 0, 2000, 1414), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0, 0), 0, rl.White)
 }
+func (e *Engine) LoreRendering() {
+	rl.DrawTexturePro(e.Lore3, rl.NewRectangle(0, 0, 1920, 1080), rl.NewRectangle(0, 0, 1920, 1080), rl.NewVector2(0, 0), 0, rl.White)
+	
+}
 
 func (e *Engine) CharactersRendering() {
 	rl.ClearBackground(rl.Black)
@@ -56,7 +60,7 @@ func (e *Engine) InGameRendering() {
 
 	rl.BeginMode2D(e.Camera) // On commence le rendu camera
 
-	e.RenderMap()
+	e.RenderMap(e.MapJSON)
 
 	e.RenderMonsters()
 	e.RenderPlayer()
@@ -96,10 +100,6 @@ func (e *Engine) GameOverRendering() {
 	rl.DrawText("GAME OVER", int32(rl.GetScreenWidth())/2-rl.MeasureText("GAME OVER", 20)/2, int32(rl.GetScreenHeight())/2-200, 60, rl.RayWhite)
 }
 
-// func (e *Engine) TempleRendering() {
-// 	rl.ClearBackground(rl.Red)
-// 	//e.RenderMap2(&e.MapArene)
-// }
 
 func (e *Engine) RenderPlayer() {
 
@@ -129,7 +129,6 @@ func (e *Engine) RenderMonsters() {
 				rl.DrawText(strconv.Itoa(monster.Health)+"/50", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White)
 				rl.DrawText(strconv.Itoa(monster.Health)+"/50", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White)
 			}
-
 		}
 	}
 }
