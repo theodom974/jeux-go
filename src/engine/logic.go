@@ -30,10 +30,8 @@ func (e *Engine) HomeLogic() {
 
 	//Menus
 	if rl.IsKeyPressed(rl.KeyEnter) {
-		e.StateMenu = PLAY
+		e.StateMenu = LORE
 		rl.StopMusicStream(e.Music)
-		e.StateEngine = INGAME
-
 	}
 	if rl.IsKeyPressed(rl.KeyEscape) {
 		e.IsRunning = false
@@ -146,10 +144,14 @@ func (e *Engine) InGameLogic() {
 	}
 	rl.UpdateMusicStream(e.Music)
 }
-
-func (e *Engine) TempleLogic() {
-
+func (e *Engine) LoreLogic() {
+	if rl.IsKeyPressed(rl.KeyEnter) {
+		e.StateMenu = PLAY
+		e.StateEngine = INGAME
+		rl.StopMusicStream(e.Music)
+	}
 }
+
 
 func (e *Engine) CheckCollisions() {
 

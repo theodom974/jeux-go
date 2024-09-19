@@ -13,6 +13,7 @@ const (
 	SETTINGS menu = iota
 	PLAY     menu = iota
 	CHARACTERS menu = iota
+	LORE menu = iota
 )
 
 type engine int 
@@ -26,6 +27,7 @@ const (
 )
 
 type Engine struct {
+
 	
 	Player   entity.Player
 	Monsters []entity.Monster
@@ -37,11 +39,13 @@ type Engine struct {
 	Sprites map[string]rl.Texture2D
 
 	Camera rl.Camera2D
-	Entrainement rl.Texture2D
+
 	MapJSON MapJSON
+	
+
 	Background rl.Texture2D
 	Background3 rl.Texture2D
-	Temple   rl.Texture2D
+	Lore3 rl.Texture2D
 
 	LoadingScreenCountFrame int
 	LoadingScreen rl.Texture2D

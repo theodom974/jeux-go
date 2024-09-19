@@ -81,7 +81,8 @@ func (e *Engine) InitMap(mapFile string) {
 	}
 }
 
-func (e *Engine) RenderMap() {
+
+func (e *Engine) RenderMap(Map MapJSON) {
 	/*
 		Naive & slow map loader, render all layers everywhere each frame:
 		- Parse JSON
@@ -145,3 +146,4 @@ func (e *Engine) RenderMap() {
 		destRectangle.X, destRectangle.Y, column_counter = 0, 0, 0
 	}
 }
+
