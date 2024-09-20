@@ -82,7 +82,7 @@ func (e *Engine) InitMap(mapFile string) {
 }
 
 
-func (e *Engine) RenderMap(Map MapJSON) {
+func (e *Engine) RenderMap() {
 	/*
 		Naive & slow map loader, render all layers everywhere each frame:
 		- Parse JSON
