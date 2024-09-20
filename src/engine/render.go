@@ -134,21 +134,6 @@ func (e *Engine) RenderPlayer() {
 func (e *Engine) RenderMonsters() {
 	for _, monster := range e.Monsters {
 		if monster.IsAlive {
-			if monster.IsAlive {
-				rl.DrawTexturePro(
-					monster.Sprite,
-					rl.NewRectangle(0, 0, 100, 100),
-					rl.NewRectangle(monster.Position.X, monster.Position.Y, 150, 150),
-					rl.Vector2{X: 0, Y: 0},
-					0,
-					rl.White,
-				)
-				rl.DrawText(strconv.Itoa(monster.Health)+"/50", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White)
-				rl.DrawText(strconv.Itoa(monster.Health)+"/50", int32(monster.Position.X), int32(monster.Position.Y), 10, rl.White)
-			}
-
-		}
-		if monster.IsAlive {
 			if monster.Name == "Ryuzo" {
 				rl.DrawTexturePro(
 					monster.Sprite,
