@@ -3,6 +3,7 @@ package engine
 import (
 	"main/src/entity"
 
+
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -14,6 +15,7 @@ const (
 	PLAY     menu = iota
 	CHARACTERS menu = iota
 	LORE menu = iota
+	HELP menu = iota
 )
 
 type engine int 
@@ -59,4 +61,12 @@ type Engine struct {
 	StateMenu   menu
 	StateEngine engine
 
+	HELP menu
+	HOME menu
+}
+func NewEngine() *Engine {
+    return &Engine{
+        StateMenu: HOME,  // Définir l'état initial (par exemple, le menu d'accueil)
+        IsRunning: true,  // Le moteur commence à tourner
+    }
 }

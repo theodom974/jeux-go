@@ -22,7 +22,7 @@ type Monster struct {
 }
 
 func (m *Monster) Attack(p *Player) {
-	p.Health -= 10
+	p.Health -= 5
 }
 
 

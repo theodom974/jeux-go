@@ -46,6 +46,9 @@ func (engine *Engine) Run() {
 				engine.InventaireLogic()
 
 			}
+			case HELP: 
+            engine.HelpRendering()  
+            engine.HelpLogic()     
 		}
 		rl.EndDrawing()
 	}

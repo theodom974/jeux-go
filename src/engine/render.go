@@ -103,7 +103,6 @@ func (e *Engine) GameOverRendering() {
 	rl.DrawText("GAME OVER", int32(rl.GetScreenWidth())/2-rl.MeasureText("GAME OVER", 20)/2, int32(rl.GetScreenHeight())/2-200, 60, rl.RayWhite)
 }
 
-
 func (e *Engine) InventaireRendering() {
 	rl.DrawTexturePro(e.LoadingInventaire, rl.NewRectangle(0, 0, 316, 149), rl.NewRectangle(0, 100, 500, 500), rl.NewVector2(0, 0), 0, rl.White)
 }
@@ -176,26 +175,13 @@ func (e *Engine) RenderPnjs() {
 	}
 }
 
-func (e *Engine) RenderDialog(m entity.Monster, sentence string) {
+func (e *Engine) RenderDialogm(m entity.Monster, sentence string) {
 	rl.BeginMode2D(e.Camera)
 
 	rl.DrawText(
 		sentence,
 		int32(m.Position.X)+25,
-		int32(m.Position.Y)+50,
-		10,
-		rl.RayWhite,
-	)
-
-	rl.EndMode2D()
-}
-func (e *Engine) RenderDialo(m entity.Monster, sentence string) {
-	rl.BeginMode2D(e.Camera)
-
-	rl.DrawText(
-		sentence,
-		int32(m.Position.X)+25,
-		int32(m.Position.Y)+95,
+		int32(m.Position.Y)+100,
 		10,
 		rl.RayWhite,
 	)
@@ -203,55 +189,27 @@ func (e *Engine) RenderDialo(m entity.Monster, sentence string) {
 	rl.EndMode2D()
 }
 
-func (e *Engine) RnderDialog(p entity.Pnjs, sentence string) {
+func (e *Engine) RenderDialogp(p entity.Pnjs, sentence string) {
 	rl.BeginMode2D(e.Camera)
 
 	rl.DrawText(
 		sentence,
 		int32(p.Position.X)+50,
-		int32(p.Position.Y)-2,
-		10,
-		rl.RayWhite,
-	)
-	rl.EndMode2D()
-}
-func (e *Engine) RendeDialog(p entity.Pnjs, sentence string) {
-	rl.BeginMode2D(e.Camera)
-
-	rl.DrawText(
-		sentence,
-		int32(p.Position.X)-25,
-		int32(p.Position.Y)+50,
-		10,
-		rl.RayWhite,
-	)
-	rl.EndMode2D()
-}
-
-func (e *Engine) endeDialog(p entity.Pnjs, sentence string) {
-	rl.BeginMode2D(e.Camera)
-
-	rl.DrawText(
-		sentence,
-		int32(p.Position.X)-25,
 		int32(p.Position.Y)+90,
 		10,
 		rl.RayWhite,
 	)
 	rl.EndMode2D()
 }
-func (e *Engine) RenerDialog(p entity.Pnjs, sentence string) {
-	rl.BeginMode2D(e.Camera)
 
-	rl.DrawText(
-		sentence,
-		int32(p.Position.X)-25,
-		int32(p.Position.Y)+50,
-		10,
-		rl.RayWhite,
-	)
-	rl.EndMode2D()
-	rl.EndMode2D()
-	rl.EndMode2D()
+func (engine *Engine) HelpRendering() {
+    rl.ClearBackground(rl.RayWhite)
+    
+   
+    rl.DrawText("Aide - Commandes disponibles :", 20, 20, 20, rl.Black)
+    rl.DrawText(" - start : Démarrer le jeu", 40, 60, 16, rl.DarkGray)
+    rl.DrawText(" - quit  : Quitter le jeu", 40, 90, 16, rl.DarkGray)
+    rl.DrawText(" - help  : Afficher cette aide", 40, 120, 16, rl.DarkGray)
+    
+    rl.DrawText("Appuyez sur ESC pour retourner au menu principal", 40, 160, 16, rl.DarkGray)
 }
-

@@ -171,13 +171,13 @@ func (e *Engine) MonsterCollisions() {
 			monster.Position.Y < e.Player.Position.Y+40 {
 
 			if monster.Name == "Maitre" {
-				e.NormalTalk(monster, "La peur est un ennemi plus grand que celui que tu affronteras souviens-toi")
+				e.NormalTalkm(monster, "La peur est un ennemi plus grand que celui que tu affronteras souviens-toi")
 				if rl.IsKeyPressed(rl.KeyE) {
 					fight.Fight(&e.Player, &e.Monsters[i])
 				}
 			}
 			if monster.Name == "Ryuzo" {
-				e.NormaTal(monster, "Vien te battre !")
+				e.NormalTalkm(monster, "Vien te battre !")
 				if rl.IsKeyPressed(rl.KeyE) {
 					fight.Fight(&e.Player, &e.Monsters[i])
 				}
@@ -185,10 +185,6 @@ func (e *Engine) MonsterCollisions() {
 			}
 		}
 	}
-}
-
-func (e *Engine) NormaTal(m entity.Monster, sentence string) {
-	e.RenderDialo(m, sentence)
 }
 
 func (e *Engine) PnjsColliions() {
@@ -200,13 +196,13 @@ func (e *Engine) PnjsColliions() {
 			pnj.Position.Y < e.Player.Position.Y+40 {
 
 			if pnj.Name == "Garde 1" {
-				e.NralTalkp(pnj, "Après cet entrainement trouver l'arbre \n     sacré gardé par le forgeron.")
+				e.NormalTalkp(pnj, "Après cet entrainement trouver l'arbre \n     sacré gardé par le forgeron.")
 			} else if pnj.Name == "Garde 2" {
-				e.NormaleTlkp(pnj, "\n   Le maitre \n   vous attend.")
+				e.NormalTalkp(pnj, "\n   Le maitre \n   vous attend.")
 			 } else if pnj.Name == "Villageois" {
-				e.NorlTalkp(pnj, "Salut cher voyageur.")
+				e.NormalTalkp(pnj, "S@lut her voiagueur.")
 			 }else if pnj.Name == "SDF" {
-				e.NormaTalkp(pnj, "Salut cher voyageur voici une arme pour ta quête !")
+				e.NormalTalkp(pnj, "Salut cher voyageur voici une arme pour ta quête !")
 				if rl.IsKeyPressed(rl.KeyR) {
 					e.Player.Inventaire = append(e.Player.Inventaire, item.Item{
 						Name:         "Epée",
@@ -226,20 +222,11 @@ func (e *Engine) TempleCollisions() {
 
 }
 
-func (e *Engine) NormalTalk(m entity.Monster, sentence string) {
-	e.RenderDialog(m, sentence)
+func (e *Engine) NormalTalkm(m entity.Monster, sentence string) {
+	e.RenderDialogm(m, sentence)
 }
-func (e *Engine) NralTalkp(p entity.Pnjs, sentence string) {
-	e.RnderDialog(p, sentence)
-}
-func (e *Engine) NorlTalkp(p entity.Pnjs, sentence string) {
-	e.endeDialog(p, sentence)
-}
-func (e *Engine) NormaleTlkp(p entity.Pnjs, sentence string) {
-	e.RendeDialog(p, sentence)
-}
-func (e *Engine) NormaTalkp(p entity.Pnjs, sentence string) {
-	e.RenerDialog(p, sentence)
+func (e *Engine) NormalTalkp(p entity.Pnjs, sentence string) {
+	e.RenderDialogp(p, sentence)
 }
 
 func (e *Engine) PauseLogic() {
@@ -270,3 +257,9 @@ func (e *Engine) InventaireLogic() {
 		e.StateEngine = INGAME
 	}
 }
+func (engine *Engine) HelpLogic() {
+    if rl.IsKeyPressed(rl.KeyEscape) {
+        engine.StateMenu = HOME 
+    }
+}
+

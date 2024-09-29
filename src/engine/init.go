@@ -63,7 +63,7 @@ func (e *Engine) InitEntities() {
 			Name: "Ryuzo",
 			Position: rl.Vector2{X: 140, Y: 1120},
 			Health: 100,
-			Damage: 25,
+			Damage: 10,
 
 			IsAlive: true,
 			Sprite: rl.LoadTexture("textures/entities/mechant/Idle.png"),
